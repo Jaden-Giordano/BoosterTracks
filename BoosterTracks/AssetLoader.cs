@@ -15,14 +15,6 @@ namespace BoosterTracks {
 
         }
 
-        public void Unload() {
-            assetBundle.Unload(true);
-        }
-
-        public UnityEngine.Object LoadAsset(string a) {
-            return this.assetBundle.LoadAsset(a);
-        }
-
         public void LoadAssets() {
             char dsc = System.IO.Path.DirectorySeparatorChar;
 
