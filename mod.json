@@ -1,0 +1,7 @@
+{
+    "BaseDir": "BoosterTracks",
+	"IsDevelopment":true,
+	"IsEnabled":true,
+    "Name": "Booster Tracks",
+    "Project": "BoosterTracks.csproj"
+}
