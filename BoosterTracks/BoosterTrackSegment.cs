@@ -9,5 +9,9 @@ namespace BoosterTracks {
         public override float getAcceleration() {
             return acceleration;
         }
+
+        public void setAcceleration(float a) {
+            this.acceleration = a;
+        }
     }
 }

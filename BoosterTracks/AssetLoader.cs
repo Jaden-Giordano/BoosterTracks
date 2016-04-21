@@ -9,12 +9,18 @@ namespace BoosterTracks {
 
         public string Path;
 
+        public Sprite test;
+
         void Start() {
 
         }
 
         public void Unload() {
             assetBundle.Unload(true);
+        }
+
+        public UnityEngine.Object LoadAsset(string a) {
+            return this.assetBundle.LoadAsset(a);
         }
 
         public void LoadAssets() {
@@ -25,6 +31,8 @@ namespace BoosterTracks {
                     throw new Exception("Download had an error:" + www.error);
 
                 assetBundle = www.assetBundle;
+
+                test = Instantiate(assetBundle.LoadAsset<Sprite>("test-sprite"));
 
                 assetBundle.Unload(false);
             }

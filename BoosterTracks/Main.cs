@@ -11,6 +11,7 @@ namespace BoosterTracks {
             assetLoader = new GameObject();
             AssetLoader loader = assetLoader.AddComponent<AssetLoader>();
             loader.Path = Path;
+            loader.LoadAssets();
 
             specialSegments = AssetManager.Instance.specialSegments;
 
@@ -21,27 +22,13 @@ namespace BoosterTracks {
 
             SpecialSegmentSettings lowSpeed = ScriptableObject.CreateInstance<SpecialSegmentSettings>();
             lowSpeed.displayName = "Low Speed Booster Track";
-            lowSpeed.segmentPrefab = new LowSpeedBoosterSegment();
+            BoosterTrackSegment bseg = new BoosterTrackSegment();
+            bseg.setAcceleration(20f);
+            lowSpeed.segmentPrefab = bseg;
             lowSpeed.curveAngle = 0;
-            lowSpeed.preview = (Sprite) UnityEngine.Object.Instantiate(assetLoader.assetBundle.LoadAsset("test-sprite"));
+            lowSpeed.preview = UnityEngine.Object.Instantiate(loader.test);
             lowSpeed.isInverted = false;
             newSpecialSegments[newSpecialSegments.Length - 3] = lowSpeed;
-
-            SpecialSegmentSettings medSpeed = ScriptableObject.CreateInstance<SpecialSegmentSettings>();
-            lowSpeed.displayName = "Medium Speed Booster Track";
-            lowSpeed.segmentPrefab = new LowSpeedBoosterSegment();
-            lowSpeed.curveAngle = 0;
-            lowSpeed.preview = (Sprite)UnityEngine.Object.Instantiate(assetLoader.assetBundle.LoadAsset("test-sprite"));
-            lowSpeed.isInverted = false;
-            newSpecialSegments[newSpecialSegments.Length - 2] = medSpeed;
-
-            SpecialSegmentSettings highSpeed = ScriptableObject.CreateInstance<SpecialSegmentSettings>();
-            lowSpeed.displayName = "High Speed Booster Track";
-            lowSpeed.segmentPrefab = new LowSpeedBoosterSegment();
-            lowSpeed.curveAngle = 0;
-            lowSpeed.preview = (Sprite)UnityEngine.Object.Instantiate(assetLoader.assetBundle.LoadAsset("test-sprite"));
-            lowSpeed.isInverted = false;
-            newSpecialSegments[newSpecialSegments.Length - 1] = highSpeed;
 
             AssetManager.Instance.specialSegments = newSpecialSegments;
 
@@ -49,8 +36,6 @@ namespace BoosterTracks {
                 if (a is Coaster) {
                     Coaster c = (Coaster)a;
                     c.specialSegments.addSpecialSegment(lowSpeed);
-                    c.specialSegments.addSpecialSegment(medSpeed);
-                    c.specialSegments.addSpecialSegment(highSpeed);
                 }
             }
         }

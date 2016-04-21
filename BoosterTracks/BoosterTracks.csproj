@@ -50,9 +50,6 @@
   <ItemGroup>
     <Compile Include="AssetLoader.cs" />
     <Compile Include="BoosterTrackSegment.cs" />
-    <Compile Include="BoostTypes\LowSpeedBoosterSegment.cs" />
-    <Compile Include="BoostTypes\MediumSpeedBoosterSegment.cs" />
-    <Compile Include="BoostTypes\HighSpeedBoosterSegment.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
