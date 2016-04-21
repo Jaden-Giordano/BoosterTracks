@@ -3,5 +3,6 @@
 	"IsDevelopment":true,
 	"IsEnabled":true,
     "Name": "Booster Tracks",
-    "Project": "BoosterTracks.csproj"
+    "Project": "BoosterTracks.csproj",
+	"AssetBundleDir": "assetbundle"
 }

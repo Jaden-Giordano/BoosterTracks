@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
 
 namespace BoosterTracks {
     public class Main : IMod {
 
         SpecialSegmentSettings[] specialSegments;
 
+        GameObject assetLoader;
+
         public void onEnabled() {
+            assetLoader = new GameObject();
+            AssetLoader loader = assetLoader.AddComponent<AssetLoader>();
+            loader.Path = Path;
+
             specialSegments = AssetManager.Instance.specialSegments;
 
             SpecialSegmentSettings[] newSpecialSegments = new SpecialSegmentSettings[specialSegments.Length + 3];
@@ -19,13 +23,15 @@ namespace BoosterTracks {
             lowSpeed.displayName = "Low Speed Booster Track";
             lowSpeed.segmentPrefab = new LowSpeedBoosterSegment();
             lowSpeed.curveAngle = 0;
+            lowSpeed.preview = (Sprite) UnityEngine.Object.Instantiate(assetLoader.assetBundle.LoadAsset("test-sprite"));
             lowSpeed.isInverted = false;
             newSpecialSegments[newSpecialSegments.Length - 3] = lowSpeed;
 
-            SpecialSegmentSettings medSpeed = new SpecialSegmentSettings();
+            SpecialSegmentSettings medSpeed = ScriptableObject.CreateInstance<SpecialSegmentSettings>();
             lowSpeed.displayName = "Medium Speed Booster Track";
             lowSpeed.segmentPrefab = new LowSpeedBoosterSegment();
             lowSpeed.curveAngle = 0;
+            lowSpeed.preview = (Sprite)UnityEngine.Object.Instantiate(assetLoader.assetBundle.LoadAsset("test-sprite"));
             lowSpeed.isInverted = false;
             newSpecialSegments[newSpecialSegments.Length - 2] = medSpeed;
 
@@ -33,6 +39,7 @@ namespace BoosterTracks {
             lowSpeed.displayName = "High Speed Booster Track";
             lowSpeed.segmentPrefab = new LowSpeedBoosterSegment();
             lowSpeed.curveAngle = 0;
+            lowSpeed.preview = (Sprite)UnityEngine.Object.Instantiate(assetLoader.assetBundle.LoadAsset("test-sprite"));
             lowSpeed.isInverted = false;
             newSpecialSegments[newSpecialSegments.Length - 1] = highSpeed;
 
@@ -63,19 +70,23 @@ namespace BoosterTracks {
             UnityEngine.Object.DestroyImmediate(AssetManager.Instance.specialSegments[AssetManager.Instance.specialSegments.Length - 1]);
 
             AssetManager.Instance.specialSegments = specialSegments;
+
+            assetLoader.GetComponent<AssetLoader>().Unload();
+
+            UnityEngine.Object.DestroyImmediate(assetLoader);
         }
 
         public string Description {
             get { return "Booster Tracks for those super fast coasters!"; }
         }
 
-        public string Identifier {
-            get; set;
-        }
+        public string Identifier { get; set; }
 
         public string Name {
             get { return "Booster Tracks"; }
         }
+
+        public string Path { get; set; }
 
     }
 }

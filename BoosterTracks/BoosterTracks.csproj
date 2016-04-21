@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetLoader.cs" />
     <Compile Include="BoosterTrackSegment.cs" />
     <Compile Include="BoostTypes\LowSpeedBoosterSegment.cs" />
     <Compile Include="BoostTypes\MediumSpeedBoosterSegment.cs" />
