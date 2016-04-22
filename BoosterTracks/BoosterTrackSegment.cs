@@ -9,7 +9,17 @@ namespace BoosterTracks {
 
         protected override void initiate(TrackSegment4 previousSegment) {
             base.initiate(previousSegment);
-            acceleration = 50f;
+            acceleration = 40f;
+        }
+
+        protected override void Awake() {
+            // If Track already has custom color
+            if (this.customColors == null || GetComponent<CustomColors>() == null) {
+                // add customcolor component
+                base.Awake();
+                // set customcolors to an array with a length of 0
+                this.customColors.setColors(new Color[0]);
+            }
         }
 
         /*
@@ -31,7 +41,6 @@ namespace BoosterTracks {
         public void setAcceleration(float a) {
             this.acceleration = a;
         }
-
         
     }
 }

@@ -24,7 +24,11 @@ namespace BoosterTracks {
             }
 
             GameObject track = new GameObject();
+            track.AddComponent<MeshFilter>();
+            track.AddComponent<MeshRenderer>();
+            //track.AddComponent<CustomColors>();
             BoosterTrackSegment bseg = track.AddComponent<BoosterTrackSegment>();
+
             SpecialSegmentSettings lowSpeed = ScriptableObject.CreateInstance<SpecialSegmentSettings>();
             lowSpeed.displayName = "Low Speed Booster Track";
             bseg.setAcceleration(20f);
